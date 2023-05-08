@@ -12,7 +12,7 @@ const submit = async (data: {
   thing: string | null;
 }) => {
   const res = await fetch(
-    `${process.env.URL || "http://localhost:3000"}/api/posts/create`,
+    `${process.env.URL || "https://linkedout-app.vercel.app"}/api/posts/create`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },

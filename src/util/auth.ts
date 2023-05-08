@@ -52,7 +52,7 @@ const signInUser = (email: string, password: string, callback: Function) => {
     alert("Please enter a valid email");
   }
 
-  const URL = process.env.URL || "http://localhost:3000";
+  const URL = process.env.URL || "https://linkedout-app.vercel.app";
 
   fetch(`${URL}/api/auth/signin/`, {
     method: "POST",
