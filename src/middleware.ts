@@ -9,14 +9,14 @@ function isAuthenticated(request: NextRequest): boolean {
   }
 }
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   if (!isAuthenticated(request)) {
     // If the user is not authenticated, redirect them to the login page.
-    return NextResponse.redirect(new URL("/auth/signin", request.url));
+    return await NextResponse.redirect(new URL("/auth/signin", request.url));
   }
 
   // If the user is authenticated, proceed with the request.
-  return NextResponse.next();
+  return await NextResponse.next();
 }
 
 export const config = {

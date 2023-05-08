@@ -15,7 +15,9 @@ const UserPanel = async (props: props) => {
   }
 
   if (user === null) {
-    return <div>Please sign in</div>;
+    return (
+      <div className="w-1/4 bg-transparent rounded-xl p-4 flex flex-col items-center"></div>
+    );
   }
 
   const data = await prisma.user.findFirst({
