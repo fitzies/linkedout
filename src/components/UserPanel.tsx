@@ -1,6 +1,7 @@
 import { decode } from "@/util/jwt";
 import { PrismaClient, User } from "@prisma/client";
 import { cookies } from "next/headers";
+import Image from "next/image";
 
 const prisma = new PrismaClient();
 
@@ -33,7 +34,11 @@ const UserPanel = async (props: props) => {
     <div className="w-1/4 bg-gray-800 rounded-xl border border-gray-700 p-4 flex flex-col items-center">
       <div className="w-1/3 aspect-square bg-black rounded-full">
         {data.avatar ? (
-          <img src={data.avatar} className="w-full rounded-full" />
+          <Image
+            alt="avatar"
+            src={data.avatar}
+            className="w-full rounded-full"
+          />
         ) : null}
       </div>
       <h1 className="font-bold text-2xl my-4">{data.username}</h1>
