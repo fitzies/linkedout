@@ -23,26 +23,30 @@ const UserPanel = async (props: props) => {
     user = decode(cookie!.value).payload as User;
   }
 
-  if (user === null) {
+  let data;
+
+  if (user === null && !props.customUser) {
     return (
       <div className="w-1/4 bg-transparent rounded-xl p-4 flex flex-col items-center"></div>
     );
   }
 
-  let data = await prisma.user.findFirst({
-    where: { username: user.username },
-    include: {
-      followers: true,
-      following: true,
-    },
-  });
-
-  if (!data) {
-    return <div>Loading</div>;
+  if (user && !props.customUser) {
+    data = await prisma.user.findFirst({
+      where: { username: user!.username },
+      include: {
+        followers: true,
+        following: true,
+      },
+    });
   }
 
   if (props.customUser) {
     data = props.customUser;
+  }
+
+  if (!data) {
+    return <div>Loading</div>;
   }
 
   return (

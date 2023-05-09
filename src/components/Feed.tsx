@@ -36,6 +36,10 @@ const Feed = async (props: props) => {
     });
   }
 
+  if (posts.length <= 0) {
+    return <>No posts...</>;
+  }
+
   return (
     <div className="flex flex-col w-[40%] gap-2">
       {cookie && data ? <Write user={data} /> : null}
