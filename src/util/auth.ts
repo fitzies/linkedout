@@ -14,7 +14,7 @@ const createAccount = (
     alert("Please enter a valid email");
   }
 
-  const URL = process.env.URL || "linkedout-app.vercel.app";
+  const URL = "https://linkedout-app.vercel.app/";
 
   fetch(`${URL}/api/auth/signup/`, {
     method: "POST",
