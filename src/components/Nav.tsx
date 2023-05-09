@@ -12,9 +12,12 @@ const Nav = () => {
   return (
     <div className="w-screen border-b border-gray-700 p-6 flex justify-between">
       <div className="flex gap-4 justify-center-center">
-        <div className="bg-gradient px-4 py-1 rounded-xl text-xl font-bold flex items-center">
+        <Link
+          href="/"
+          className="bg-gradient px-4 py-1 rounded-xl text-xl font-bold flex items-center"
+        >
           Out
-        </div>
+        </Link>
         <UserSearchBar />
       </div>
       <div className="flex gap-8 items-center">

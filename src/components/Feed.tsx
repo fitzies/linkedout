@@ -7,7 +7,10 @@ import Post from "./Post";
 
 const prisma = new PrismaClient();
 
-type props = {};
+type props = {
+  customFeed?: Post[]; // Custom posts but can't post
+  customUser: User; // Custom user but can still post
+};
 
 const Feed = async (props: props) => {
   let cookie = cookies().get("user");
@@ -20,7 +23,18 @@ const Feed = async (props: props) => {
     where: { email: user?.email },
   });
 
-  const posts = await (await prisma.post.findMany()).reverse();
+  let posts = await (await prisma.post.findMany()).reverse();
+
+  if (props.customFeed) {
+    posts = props.customFeed;
+    cookie = undefined;
+  }
+
+  if (props.customUser) {
+    posts = await prisma.post.findMany({
+      where: { authorId: props.customUser.id },
+    });
+  }
 
   return (
     <div className="flex flex-col w-[40%] gap-2">

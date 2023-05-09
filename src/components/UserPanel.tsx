@@ -1,11 +1,20 @@
 import { decode } from "@/util/jwt";
-import { PrismaClient, User } from "@prisma/client";
+import { Follows, PrismaClient, User } from "@prisma/client";
 import { cookies } from "next/headers";
 import Image from "next/image";
+import Button from "./Button";
 
 const prisma = new PrismaClient();
 
-type props = {};
+type props = {
+  customUser?:
+    | (User & {
+        followers: Follows[];
+        following: Follows[];
+      })
+    | null;
+  editable?: boolean;
+};
 
 const UserPanel = async (props: props) => {
   let cookie = cookies().get("user");
@@ -20,7 +29,7 @@ const UserPanel = async (props: props) => {
     );
   }
 
-  const data = await prisma.user.findFirst({
+  let data = await prisma.user.findFirst({
     where: { username: user.username },
     include: {
       followers: true,
@@ -30,6 +39,10 @@ const UserPanel = async (props: props) => {
 
   if (!data) {
     return <div>Loading</div>;
+  }
+
+  if (props.customUser) {
+    data = props.customUser;
   }
 
   return (
@@ -44,7 +57,11 @@ const UserPanel = async (props: props) => {
         ) : null}
       </div>
       <h1 className="font-bold text-2xl my-4">{data.username}</h1>
-      <p className="text-center text-gray-400 text-sm">
+      <p
+        className={`text-center text-gray-400 text-sm ${
+          props.editable ? "hover:underline cursor-pointer" : ""
+        }`}
+      >
         {data.bio ??
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis, fugit!"}
       </p>
@@ -61,6 +78,12 @@ const UserPanel = async (props: props) => {
           );
         })}
       </div>
+      {props.customUser ? (
+        <div className="p-4 flex gap-3">
+          <Button text="Employ" />
+          <Button text="Contact" type="polished" />
+        </div>
+      ) : null}
     </div>
   );
 };

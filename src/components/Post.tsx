@@ -38,7 +38,9 @@ const Post = async (props: props) => {
         </div>
       </div>
       <div className="px-1 pt-2">{post.content}</div>
-      {post.thing ? <img src={post.thing} className="w-full px-2" /> : null}
+      {post.thing ? (
+        <img src={post.thing} className="w-full px-2 my-2 rounded-3xl" />
+      ) : null}
     </div>
   );
 };
