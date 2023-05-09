@@ -16,7 +16,7 @@ const createAccount = (
 
   const URL = "https://linkedout-app.vercel.app/";
 
-  fetch(`${URL}/api/auth/signup/`, {
+  fetch(`https://linkedout-app.vercel.app/api/auth/signup/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
