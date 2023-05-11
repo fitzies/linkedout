@@ -39,8 +39,20 @@ const Post = async (props: props) => {
       </div>
       <div className="px-1 pt-2">{post.content}</div>
       {post.thing ? (
-        <img src={post.thing} className="w-full px-2 my-2 rounded-3xl" />
+        <iframe
+          src={post.thing}
+          width="640"
+          height="480"
+          allow="autoplay"
+          className="w-full px-2 my-2 rounded-3xl"
+        ></iframe>
       ) : null}
+      {/* {post.videoThing ? (
+        <iframe
+          src={post.videoThing}
+          className="w-full px-2 my-2 rounded-3xl"
+        />
+      ) : null} */}
     </div>
   );
 };
