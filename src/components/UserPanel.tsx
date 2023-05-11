@@ -53,11 +53,7 @@ const UserPanel = async (props: props) => {
     <div className="w-1/4 bg-gray-800 rounded-xl border border-gray-700 p-4 flex flex-col items-center">
       <div className="w-1/3 aspect-square bg-black rounded-full">
         {data.avatar ? (
-          <Image
-            alt="avatar"
-            src={data.avatar}
-            className="w-full rounded-full"
-          />
+          <img alt="avatar" src={data.avatar} className="w-full rounded-full" />
         ) : null}
       </div>
       <h1 className="font-bold text-2xl my-4">{data.username}</h1>
@@ -85,7 +81,7 @@ const UserPanel = async (props: props) => {
       {props.customUser ? (
         <div className="p-4 flex gap-3">
           <Button text="Employ" />
-          <Button text="Contact" type="polished" />
+          <Button text="Follow" type="polished" />
         </div>
       ) : null}
     </div>
