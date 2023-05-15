@@ -19,9 +19,9 @@ const Page = async () => {
 
   return (
     <div className="w-screen flex justify-center items-start p-4 gap-4">
-      {/* @ts-ignore */}
+      {/* @ts-expect-error Server Component */}
       <UserPanel editable />
-      {/* @ts-ignore */}
+      {/* @ts-expect-error Server Component */}
       <Feed customUser={data} />
       <div className="w-1/4 bg-transparent rounded-xl p-4 flex flex-col items-center"></div>
     </div>
